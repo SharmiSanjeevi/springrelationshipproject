@@ -25,7 +25,12 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @PostMapping("/categories")
+    /**
+     * Add a new Category
+     * @param category
+     * @return category
+     */
+    @PostMapping("/category")
     public ResponseEntity<Category> addCategory(@RequestBody Category category) {
         logger.debug("inside Add Category method");
         HttpHeaders headers = new HttpHeaders();
@@ -36,7 +41,13 @@ public class CategoryController {
 
     }
 
-    @PutMapping("/categories")
+    /**
+     * Update a category in the database
+     * @param category
+     * @return Category
+     */
+
+    @PutMapping("/category")
     public ResponseEntity<Category> updateCategory(@RequestBody Category category) {
         logger.debug("Update Category method");
         HttpHeaders headers = new HttpHeaders();
@@ -47,7 +58,13 @@ public class CategoryController {
 
     }
 
-    @DeleteMapping("/categories/{categoryId}")
+    /**
+     * Delete a Category
+     * @param categoryId
+     * @return
+     */
+
+    @DeleteMapping("/category/{categoryId}")
     public ResponseEntity<Void> deleteCategory(@PathVariable("categoryId") int categoryId) {
         logger.debug("Delete Category method");
         HttpHeaders headers = new HttpHeaders();
@@ -57,7 +74,12 @@ public class CategoryController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).headers(headers).build();
     }
 
-    @GetMapping("/categories/id/{categoryId}")
+    /**
+     * Find Category by Id
+     * @param categoryId
+     * @return Category
+     */
+    @GetMapping("/category/id/{categoryId}")
     public ResponseEntity<Category> getById(@PathVariable("categoryId") int categoryId) {
         logger.debug("inside get category by id method");
         HttpHeaders headers = new HttpHeaders();
@@ -67,7 +89,11 @@ public class CategoryController {
         return ResponseEntity.ok().headers(headers).body(category);
     }
 
-    @GetMapping("/categories")
+    /**
+     * Find all Category
+     * @return Category
+     */
+    @GetMapping("/category")
     public ResponseEntity<List<Category>> getAll() {
         HttpHeaders headers = new HttpHeaders();
         headers.add("desc", "Getting All Categories");
@@ -75,14 +101,5 @@ public class CategoryController {
         List<Category> categories = categoryService.getAll();
         ResponseEntity<List<Category>> categoryResponse = new ResponseEntity<>(categories, headers, HttpStatus.OK);
         return categoryResponse;
-    }
-
-    @GetMapping("/categories/category/{category}")
-    public ResponseEntity<List<Category>> getByCategory(@PathVariable("category") String categoryName) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("desc", "Get by category");
-        List<Category> categories = categoryService.getByCategory(categoryName);
-        logger.info("Get by Category");
-        return ResponseEntity.ok().headers(headers).body(categories);
     }
 }

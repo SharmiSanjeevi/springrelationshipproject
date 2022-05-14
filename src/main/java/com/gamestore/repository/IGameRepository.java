@@ -27,7 +27,7 @@ public interface IGameRepository extends JpaRepository<Game, Integer> {
 
     List<Game> findByNameAndSize(String gameName, String size);
 
-    @Query("from Game g inner join g.publisher p where p.publisherName=?1")
+    @Query("from Game g inner join g.publisher p where p.publisherName like %?1%")
     List<Game> findByPublisherName(String publisherName);
 
     @Query("from Game g inner join g.publisher p where p.country=?1")

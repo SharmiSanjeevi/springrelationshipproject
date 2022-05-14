@@ -25,6 +25,11 @@ public class GameController {
         this.gameService = gameService;
     }
 
+    /**
+     * Add a Game into the database
+     * @param game
+     * @return Game
+     */
     @PostMapping("/games")
     public ResponseEntity<Game> addGame(@RequestBody Game game) {
 
@@ -37,6 +42,12 @@ public class GameController {
 
     }
 
+    /**
+     * update Game in the database
+     * @param game
+     * @return Game
+     */
+
     @PutMapping("/games")
     public ResponseEntity<Game> updateGame(@RequestBody Game game) {
         logger.debug("Update Game controller");
@@ -46,6 +57,12 @@ public class GameController {
         logger.info("Game Added");
         return ResponseEntity.status(HttpStatus.ACCEPTED).headers(headers).build();
     }
+
+    /**
+     * Delete game in the database
+     * @param gameId
+     * @return
+     */
 
     @DeleteMapping("/games/{gameId}")
     public ResponseEntity<Void> deleteGame(@PathVariable("gameId") int gameId) {
@@ -57,6 +74,12 @@ public class GameController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).headers(headers).build();
     }
 
+    /**
+     * Find game By Id
+     * @param gameId
+     * @return Game
+     * @throws GameNotFoundException
+     */
     @GetMapping("/games/id/{gameId}")
     public ResponseEntity<Game> getById(@PathVariable("gameId") int gameId) throws GameNotFoundException {
         logger.debug("Get game by id controller");
@@ -67,6 +90,10 @@ public class GameController {
         return ResponseEntity.ok().headers(headers).body(game);
     }
 
+    /**
+     * Find all Game
+     * @return game
+     */
     @GetMapping("/games")
     public ResponseEntity<List<Game>> getAll() {
         logger.debug("Get All game controller");
@@ -79,7 +106,12 @@ public class GameController {
         return gameResponse;
     }
 
-    @GetMapping("/games/game/{game}")
+    /**
+     * Find By Game Name
+     * @param gameName
+     * @return Game
+     */
+    @GetMapping("/games/gamename/{game}")
     public ResponseEntity<List<Game>> getByGame(@PathVariable("game") String gameName) {
         logger.debug("Get game by name  controller");
         HttpHeaders headers = new HttpHeaders();
@@ -88,6 +120,12 @@ public class GameController {
         logger.info("Got Game by name");
         return ResponseEntity.ok().headers(headers).body(games);
     }
+
+    /**
+     * Find by game downloads
+     * @param downloads
+     * @return Game
+     */
 
     @GetMapping("/games/downloads/{downloads}")
     public ResponseEntity<List<Game>> getByDownloads(@PathVariable("downloads") int downloads) {
@@ -99,6 +137,11 @@ public class GameController {
         return ResponseEntity.ok().headers(headers).body(game);
     }
 
+    /**
+     * Find by Game Rating
+     * @param ratings
+     * @return Game
+     */
     @GetMapping("/games/rating/{rating}")
     public ResponseEntity<List<Game>> getByRatings(@PathVariable("rating") double ratings) {
         logger.debug("Get game by rating  controller");
@@ -108,6 +151,12 @@ public class GameController {
         logger.info("Got Game by rating");
         return ResponseEntity.ok().headers(headers).body(games);
     }
+
+    /**
+     * Find by Game size
+     * @param size
+     * @return Game
+     */
 
     @GetMapping("/games/size/{size}")
     public ResponseEntity<List<Game>> getBySize(@PathVariable("size") String size) {
@@ -119,6 +168,11 @@ public class GameController {
         return ResponseEntity.ok().headers(headers).body(games);
     }
 
+    /**
+     * Find by Game Publisher Name
+     * @param publisherName
+     * @return Game
+     */
     @GetMapping("/games/publisherName/{publisherName}")
     public ResponseEntity<List<Game>> getByPublisherName(@PathVariable("publisherName") String publisherName) {
         logger.debug("Get game by publisher name controller");
@@ -129,6 +183,11 @@ public class GameController {
         return ResponseEntity.ok().headers(headers).body(games);
     }
 
+    /**
+     * Find by Game Publisher Country
+     * @param country
+     * @return Game
+     */
     @GetMapping("/games/country/{country}")
     public ResponseEntity<List<Game>> getByPublisherCountry(@PathVariable("country") String country) {
         logger.debug("Get game by publisher country controller");
@@ -139,6 +198,11 @@ public class GameController {
         return ResponseEntity.ok().headers(headers).body(games);
     }
 
+    /**
+     * Find by Game Category name
+     * @param categoryName
+     * @return Game
+     */
     @GetMapping("/games/category/{category}")
     public ResponseEntity<List<Game>> getByCategoryName(@PathVariable("category") String categoryName) {
         logger.debug("Get game by category name controller");
@@ -149,6 +213,11 @@ public class GameController {
         return ResponseEntity.ok().headers(headers).body(games);
     }
 
+    /**
+     * Find by Game required RAM
+     * @param RAM
+     * @return Game
+     */
     @GetMapping("/games/RAM/{RAM}")
     public ResponseEntity<List<Game>> getByRequiredRAM(@PathVariable("RAM") String RAM) {
         logger.debug("Get game by required RAM controller");
@@ -159,6 +228,11 @@ public class GameController {
         return ResponseEntity.ok().headers(headers).body(games);
     }
 
+    /**
+     * Find by Game Required storage
+     * @param storage
+     * @return Game
+     */
     @GetMapping("/games/storage/{storage}")
     public ResponseEntity<List<Game>> getByRequiredStorage(@PathVariable("storage") String storage) {
         logger.debug("Get game by required storage controller");
@@ -168,6 +242,13 @@ public class GameController {
         logger.info("Got Game by required storage");
         return ResponseEntity.ok().headers(headers).body(games);
     }
+
+    /**
+     * Find by Game name and Game ratings
+     * @param gameName
+     * @param ratings
+     * @return Game
+     */
 
     @GetMapping("/games/game/{game}/rating/{rating}")
     public ResponseEntity<List<Game>> getByGameAndRatings(@PathVariable("game") String gameName, @PathVariable("rating") String ratings) {
@@ -179,6 +260,13 @@ public class GameController {
         return ResponseEntity.ok().headers(headers).body(games);
     }
 
+    /**
+     * Find by Game name and Game downloads
+     * @param gameName
+     * @param downloads
+     * @return Game
+     */
+
     @GetMapping("/games/game/{game}/downloads/{downloads}")
     public ResponseEntity<List<Game>> getByGameAndDownloads(@PathVariable("game") String gameName, @PathVariable("downloads") int downloads) {
         logger.debug("Get game by game and downloads controller");
@@ -188,6 +276,13 @@ public class GameController {
         logger.info("Got Game by game and downloads");
         return ResponseEntity.ok().headers(headers).body(games);
     }
+
+    /**
+     * Find by Game name and Game Publisher
+     * @param gameName
+     * @param publisherName
+     * @return Game
+     */
 
     @GetMapping("/games/game/{game}/publisher/{publisher}")
     public ResponseEntity<List<Game>> getByGameAndPublisher(@PathVariable("game") String gameName, @PathVariable("publisher") String publisherName) {
@@ -199,6 +294,13 @@ public class GameController {
         return ResponseEntity.ok().headers(headers).body(games);
     }
 
+    /**
+     * Find by Game name and Game size
+     * @param gameName
+     * @param size
+     * @return Game
+     */
+
     @GetMapping("/games/game/{game}/size/{size}")
     public ResponseEntity<List<Game>> getByGameAndSize(@PathVariable("game") String gameName, @PathVariable("size") String size) {
         logger.debug("Get game by game and size controller");
@@ -209,6 +311,12 @@ public class GameController {
         return ResponseEntity.ok().headers(headers).body(games);
     }
 
+    /**
+     * Find by Game name and Game Category
+     * @param gameName
+     * @param name
+     * @return Game
+     */
     @GetMapping("/games/game/{game}/category/{category}")
     public ResponseEntity<List<Game>> getByGameAndCategory(@PathVariable("game") String gameName, @PathVariable("category") String name) {
         logger.debug("Get game by game and category controller");
@@ -218,6 +326,13 @@ public class GameController {
         logger.info("Got Game by game and category");
         return ResponseEntity.ok().headers(headers).body(games);
     }
+
+    /**
+     * Find By Game downloads and Game category
+     * @param downloads
+     * @param name
+     * @return Game
+     */
 
     @GetMapping("/games/downloads/{downloads}/category/{category}")
     public ResponseEntity<List<Game>> getByDownloadsAndCategory(@PathVariable("downloads") int downloads, @PathVariable("category") String name) {
@@ -229,6 +344,12 @@ public class GameController {
         return ResponseEntity.ok().headers(headers).body(games);
     }
 
+    /**
+     * Find by Game Category and Game Ratings
+     * @param name
+     * @param ratings
+     * @return Game
+     */
     @GetMapping("/games/category/{category}/rating/{rating}")
     public ResponseEntity<List<Game>> getByCategoryAndRatings(@PathVariable("category") String name, @PathVariable("rating") double ratings) {
         logger.debug("Get game by category and ratings controller");
@@ -238,6 +359,13 @@ public class GameController {
         logger.info("Got Game by category and ratings");
         return ResponseEntity.ok().headers(headers).body(games);
     }
+
+    /**
+     * Find by Game Category and Game storage
+     * @param name
+     * @param storage
+     * @return Game
+     */
 
     @GetMapping("/games/category/{category}/storage/{storage}")
     public ResponseEntity<List<Game>> getByCategoryAndStorage(@PathVariable("category") String name, @PathVariable("storage") String storage) {
@@ -249,6 +377,13 @@ public class GameController {
         return ResponseEntity.ok().headers(headers).body(games);
     }
 
+    /**
+     * Find by Game Category and Publisher
+     * @param name
+     * @param publisherName
+     * @return Game
+     */
+
     @GetMapping("/games/category/{category}/publisher/{publisher}")
     public ResponseEntity<List<Game>> getByCategoryPublisher(@PathVariable("category") String name, @PathVariable("publisher") String publisherName) {
         logger.debug("Get game by category and publisher controller");
@@ -259,6 +394,13 @@ public class GameController {
         return ResponseEntity.ok().headers(headers).body(games);
     }
 
+    /**
+     * Find by GAme category,rating and size
+     * @param name
+     * @param ratings
+     * @param size
+     * @return Game
+     */
     @GetMapping("/games/category/{category}/rating/{rating}/size/{size}")
     public ResponseEntity<List<Game>> getByCategoryRatingSize(@PathVariable("category") String name, @PathVariable("rating") double ratings, @PathVariable("size") String size) {
         logger.debug("Get game by category, rating and size controller");
@@ -269,6 +411,13 @@ public class GameController {
         return ResponseEntity.ok().headers(headers).body(games);
     }
 
+    /**
+     * Find by Game category,ratingd and download
+     * @param name
+     * @param ratings
+     * @param downloads
+     * @return Game
+     */
     @GetMapping("/games/category/{category}/rating/{rating}/download/{download}")
     public ResponseEntity<List<Game>> getByCategoryRatingsDownloads(@PathVariable("category") String name, @PathVariable("rating") double ratings, @PathVariable("download") int downloads) {
         logger.debug("Get game by category, rating and downloads controller");

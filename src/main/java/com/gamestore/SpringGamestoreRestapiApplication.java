@@ -38,7 +38,7 @@ public class SpringGamestoreRestapiApplication implements CommandLineRunner {
 //		requirement.setRequiredStorage("500MB");
 //
 //		Category category = new Category();
-//		category.setName(CategoryName.ONLINE);
+//		category.setName(CategoryName.OFFLINE);
 //		Category savedCategory1 = categoryService.addCategory(category);
 //
 //		Category category2 = new Category();
@@ -49,7 +49,7 @@ public class SpringGamestoreRestapiApplication implements CommandLineRunner {
 //
 //
 //		Game game = new Game();
-//		game.setName("Candy Crush");
+//		game.setName("Sudoku");
 //		game.setDownloads(10000);
 //		game.setRating(4.5);
 //		game.setSize("78MB");
@@ -64,7 +64,7 @@ public class SpringGamestoreRestapiApplication implements CommandLineRunner {
 //		publisher.setGames(games);
 //
 //		publisherService.addPublisher(publisher);
-//
+
 //		Requirement requirement = new Requirement();
 //		requirement.setRequiredStorage("300MB");
 //		requirement.setRequiredRAM("1GB");
@@ -92,7 +92,7 @@ public class SpringGamestoreRestapiApplication implements CommandLineRunner {
 //		game.setPublisher(publisher);
 //
 //		gameService.addGame(game);
-//
+
 //
 
 

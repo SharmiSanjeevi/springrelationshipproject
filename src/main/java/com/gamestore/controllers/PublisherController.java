@@ -25,6 +25,11 @@ public class PublisherController {
         this.publisherService = publisherService;
     }
 
+    /**
+     * Add Publisher in the database
+     * @param publisher
+     * @return Publisher
+     */
     @PostMapping("/publisher")
     public ResponseEntity<Publisher> addPublisher(@RequestBody Publisher publisher) {
         logger.debug("inside Add Publisher controller");
@@ -35,6 +40,12 @@ public class PublisherController {
         return ResponseEntity.status(HttpStatus.CREATED).body(npublisher);
     }
 
+    /**
+     * Update Publisher
+     * @param publisher
+     * @return Publisher
+     */
+
     @PutMapping("/publisher")
     public ResponseEntity<Publisher> updatePublisher(@RequestBody Publisher publisher) {
         logger.debug("Update Publisher controller");
@@ -44,6 +55,12 @@ public class PublisherController {
         logger.info("Publisher Added");
         return ResponseEntity.status(HttpStatus.ACCEPTED).headers(headers).body(publisher1);
     }
+
+    /**
+     * delete Publisher
+     * @param publisherId
+     * @return
+     */
 
     @DeleteMapping("/publisher/{publisherId}")
     public ResponseEntity<Void> deletePublisher(@PathVariable("publisherId") int publisherId) {
@@ -56,6 +73,12 @@ public class PublisherController {
 
     }
 
+    /**
+     * Find by Publisher Id
+     * @param publisherId
+     * @return Publisher
+     */
+
     @GetMapping("/publisher/id/{publisherId}")
     public ResponseEntity<Publisher> getById(@PathVariable("publisherId") int publisherId){
         logger.debug("inside get publisher by id controller");
@@ -66,6 +89,10 @@ public class PublisherController {
         return ResponseEntity.ok().headers(headers).body(publisher);
     }
 
+    /**
+     * Find all publisher
+     * @return Publisher
+     */
     @GetMapping("/publisher")
     public ResponseEntity<List<Publisher>> getAll() {
         HttpHeaders headers = new HttpHeaders();
@@ -75,6 +102,12 @@ public class PublisherController {
         ResponseEntity<List<Publisher>> publisherResponse = new ResponseEntity<>(publishers, headers, HttpStatus.OK);
         return publisherResponse;
     }
+
+    /**
+     *
+     * @param country
+     * @return
+     */
 
     @GetMapping("/publisher/country/{country}")
     public ResponseEntity<List<Publisher>> getByCountry(@PathVariable("country") String country){
@@ -95,4 +128,5 @@ public class PublisherController {
         logger.info("Get Publisher by name and country");
         return ResponseEntity.ok().headers(headers).body(publishers);
     }
+
 }
